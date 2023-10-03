@@ -1,46 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Geva business </title>
-</head>
-<h1>aight, that's the main page</h1>
-<style>
-h1 {
-    color: blue;
-    font-size: 80px;
-    width: 1900px;
-    text-align:center;
-}
+    <title>Geva's business</title>
+    <style>
+        .color {
+            color: blue;
+            background-color: rgb(18, 184, 199);
+            font-size: 45px;
+            font-family: cursive;
+            font-style: normal;
+        }
 
-body {
-    color: red;
-    font-size: 45px;
-    width: 1900px;
-    text-align: center;
-}
-ul {
-    color: red;
-    font-size: 45px;
-    width: 1900px;
-    text-align: center;
-}
-</style>
-<body>
-
-Here will be some content in the future once i'm certain how to add it
-<br>
-<br>
-<br>
+        .center-text {
+            text-align:center;
+        }
+        ul {
+        list-style-position:inside; /* Center the list markers */
+        }
+    header li{
+        list-style: none;
+    }
+    a:link, a:visited{
+        text-decoration: none;
+        background-color: green;
+        border: 1px solid blue;
+        color: black;
+        display: block;
+        width: 200px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    a:hover, a:active{
+        background-color: red;
+        color: purple;
+    }
+    header li:nth-child(3){
+        font-size: 50px;
+    }
     
-What do i want inside of 12 months :
+    </style>
+</head>
+<body class="color center-text">
+
+<h1 class="color center-text">aight, that's the main page</h1>
+
+<p>Here will be some content in the future once I'm certain how to add it</p>
+
+<div class="center-text">
+    <div>What do I want inside of 12 months:</div>
+</div>
+<header>
 <ul>
-<li> <a href = "https://en.wikipedia.org/wiki/Sex" target="_blank" title = "money"> money </a></li>
-<li> <a href = "https://en.wikipedia.org/wiki/Sex" target="_blank" title = "sex"> sex </a></li>
-<li> <a href = "https://en.wikipedia.org/wiki/Health" target="_blank" title = "health"> health </a></li>
-
-
+    <li><a href="https://en.wikipedia.org/wiki/Sex" target="_blank" title="money">money</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Sex" target="_blank" title="sex">sex</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Health" target="_blank" title="health">health</a></li>
 </ul>
-
+</header>
 </body>
 </html>
