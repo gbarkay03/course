@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        /* Styling the Body element i.e. Color, Font, Alignment */
+        body {
+            background-color: #05c46b;
+            font-family: Verdana;
+            text-align: center;
+        }
+
+        /* Styling the Form (Color, Padding, Shadow) */
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Styling form-control Class */
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Styling form-control Label */
+        .form-control label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Styling form-control input, select, textarea */
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            padding: 10px;
+            display: block;
+            width: 95%;
+        }
+
+        /* Styling form-control Radio button and Checkbox */
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+
+        /* Styling Button */
+        button {
+            background-color: #05c46b;
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 21px;
+            display: block;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        /* Additional style for hiding/showing questions based on age */
+        .hidden {
+            display: none;
+        }
+    </style>    
+</head>
+<body>
+    <h1>Financial status survey</h1>
+
+    <!-- Create Form -->
+    <form id="form">
+
+        <!-- Details -->
+        <div class="form-control">
+            <label for="name" id="label-name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" value="" />
+        </div>
+
+        <div class="form-control">
+            <label for="email" id="label-email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" value="" />
+        </div>
+
+        <div class="form-control">
+            <label for="age" id="label-age">Age</label>
+            <input type="text" id="age" name="age" placeholder="Enter your age" value="" oninput="handleAgeChange()" />
+        </div>
+
+    <!-- Dynamic Net Worth Questions -->
+    <div class="form-control hidden" id="networth-question-20-24">
+        <label for="networth-20-24" id="label-networth">Which option best describes you?</label>
+        <select name="networth" id="networth-20-24">
+            <option value="0-999">0-999$</option>
+            <option value="999-3000">999-3000$</option>
+            <option value="3000+">>3000$</option>
+        </select>
+    </div>
+
+    <div class="form-control hidden" id="networth-question-25-29">
+        <label for="networth-25-29" id="label-networth">Which option best describes you?</label>
+        <select name="networth" id="networth-25-29">
+            <option value="2000-5000">2000-5000$</option>
+            <option value="5000-10000">5000-10000$</option>
+            <option value="10000+">>10000$</option>
+        </select>
+    </div>
+
+        <!-- Multi-line Text Input Control -->
+        <button type="button" onclick="submitSurvey()">Submit</button>
+    </form>
+
+    <!-- Script for handling form submission and providing a response -->
+    <script>
+    function submitSurvey() {
+        var name = document.getElementById('name').value;
+        var age = parseInt(document.getElementById('age').value);
+
+        // Get the selected net worth based on the age range
+        var networth;
+        if (age >= 20 && age <= 24) {
+            networth = document.getElementById('networth-20-24').value;
+        } else if (age >= 25 && age <= 29) {
+            networth = document.getElementById('networth-25-29').value;
+        } else {
+            networth = ""; // You may handle other age ranges here
+        }
+
+        var response = calculateResponse(age, networth);
+        alert("Hey " + name + ", " + response);
+    }
+
+
+        function calculateResponse(age, networth) {
+            // Your custom logic to calculate the response
+            // This is a simple example, you can replace it with your own logic
+            if (age >= 20 && age <= 24 && networth === "0-999") {
+                return "Based on your age ( " + age + " ) and net worth, you are in the top 40% in your age group.";
+            }               
+            else if (age >= 20 && age <= 24 && networth === "999-3000") {
+                return "Based on your age ( " + age + " ) and net worth, you are in the top 30% in your age group.";
+            } 
+            else if (age >= 20 && age <= 24 && networth === "3000+") {
+                return "Based on your age ( " + age + " ) and net worth, you are in the top 10% in your age group.";
+            } 
+                
+            else if (age >= 25 && age <= 29 && networth === "2000-5000") {
+                return "Based on your age ( " + age + " ) and net worth, you are in the top 30% in your age group.";
+            } 
+            
+            else if (age >= 25 && age <= 29 && networth === "5000-10000") {
+                 return "Based on your age ( " + age + " ) and net worth, you are in the top 20% in your age group.";
+            } 
+            else if (age >= 25 && age <= 29 && networth === "10000+") {
+                return "Based on your age ( " + age + " ) and net worth, you are in the top 10% in your age group.";
+            } 
+            
+            
+            else {
+                return "Thank you for submitting the survey!";
+            }
+        }
+
+        function handleAgeChange() {
+            // Show/hide net worth questions based on age range
+            var age = parseInt(document.getElementById('age').value);
+
+            // Hide all net worth questions initially
+            document.getElementById('networth-question-20-24').classList.add('hidden');
+            document.getElementById('networth-question-25-29').classList.add('hidden');
+
+            // Show the relevant net worth question based on the age range
+            if (age >= 20 && age <= 24) {
+                document.getElementById('networth-question-20-24').classList.remove('hidden');
+            } else if (age >= 25 && age <= 29) {
+                document.getElementById('networth-question-25-29').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
